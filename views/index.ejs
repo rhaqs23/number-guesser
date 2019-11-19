@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    </div class="container-fluid">
+		<h1 class="text-center"><span class="text-primary">Generate Number</span></h1>
+		<hr style="border: 1px solid black;">
+		<div class="col-md-4">
+			
+		</div>
+		<div class="col-md-4">
+			<button id="btn_rNumGenerator" class="btn btn-success"  onclick="generateRandomNumber()">Generate</button><br><br>
+			<p id="generatedNumber" class="text-danger"></p>
+			<p id="msg"></p>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		var randomNumber;
+
+		//This function generates Random 6 digit numbers
+		function generateRandomNumber() {
+			document.getElementById('generatedNumber').innerHTML = Math.floor(100000 + Math.random() * 900000);
+			document.getElementById('msg').innerHTML = "<br> Refreshing in 5 sec..."
+			//Setting timeout loading page in 5 secs
+			randomNumber = parseInt(document.getElementById("generatedNumber").innerHTML);
+
+			if (typeof(Storage) !== "undefined") {
+			  // Store
+			  localStorage.setItem("random_no", randomNumber);
+			} else {
+			 alert("Sorry, your browser does not support Web Storage...");
+			}
+
+			setTimeout("showForm()",5000);
+			
+			  
+		}
+
+		//This Function shows the form 
+		function showForm(){
+			window.location.href = "/guess";
+		}
+
+
+	</script>
+  </body>
+</html>

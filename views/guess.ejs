@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    </div class="container-fluid">
+		<h1 class="text-center"><span class="text-primary">Guess the Number</span></h1>
+		<hr style="border: 1px solid black;">
+		<div class="col-md-4">
+			
+		</div>
+		<div class="col-md-4 form-group">
+			<div id="form">
+					<input type="text" id="user_input" class="form-control"><br><br>
+					<button id="btn_guessNumber" class="btn btn-success" onclick="guessNumber()">Guess</button>
+					<button id="btn_replayGame" class="btn btn-primary" onclick="goToHome()">Replay Game</button>
+				<p id="result"></p>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		var randomNumber = localStorage.getItem("random_no");
+		//This Function checks the matching digits
+		function guessNumber(){
+			var count = 0;
+			var user_input = parseInt(document.getElementById("user_input").value);
+			if(user_input.toString().length == 0){
+				alert("Please enter a number");
+			}
+			else if(user_input.toString().length != 6){
+				alert("Please enter a 6 digit number");
+			}
+			else{
+				while(randomNumber > 0 || user_input > 0){
+					var rNum = parseInt(randomNumber % 10);
+					var uNum = parseInt(user_input % 10);
+					if(uNum == rNum){
+						count = parseInt(count + 1);
+					}
+					randomNumber = parseInt(randomNumber / 10);
+					user_input = parseInt(user_input / 10);
+				}
+				document.getElementById('result').innerHTML = count + " digits matched!!";
+			}
+		}
+
+		function goToHome(){
+			window.location.href = "/";
+		}
+
+	</script>
+  </body>
+</html>
